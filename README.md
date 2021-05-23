@@ -1,10 +1,11 @@
 ![MiniB-farm](https://user-images.githubusercontent.com/84319584/119270749-12ff4400-bbf6-11eb-84be-ac4ebf1a8db9.png)
 
 # mycelium
-mycelium is a fast light weight in-memory data exchange for sensor information on-board a robot or between robots in large distributed and scalable swarms or systems.
+mycelium is a fast light weight in-memory data exchange for sensor information and on-board-autonomy algorithms and other data processign and simulation on a robot or between robots in large distributed and scalable swarms or system of systems.
 
 mycelium is aimed at mobile robotics and embodied intelligence. You can think of mycelium as the robot's memory, both short term and long term. 
-The goal of mycelium is to enable robots to learn from experiences during operation and improve over time, as well as allowing them to quickly simulate expected outcomes of actions on-board. 
+The goal of mycelium is to enable robots to learn from experiences during operation and improve over time, as well as allowing them to quickly simulate expected outcomes of actions on-board. If learning of experiences is abstracted in such a way it is hoped that with sufficient number of simple subroutines interacting with this memory complex behaviour can emerge, especially towards pland action. 
+
 Conceptually this is achived by creating a complete model (sensor, data, processed data, inputs and outputs) of the robot in-memory in a redis data-base allowing many subroutines to access this data-base and periodically saving snapshot of part or whole of the database on the hard drive (long term storage).
 Long term storage can be analyised at any point to change subroutines effecting current in-memory storage.<br>
 
