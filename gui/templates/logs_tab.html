@@ -1,0 +1,20 @@
+<div id="logsTab">
+    
+    <div id="tabs">
+        {% for k, v in services.items() %}
+        <button onclick="switchService('{{ k }}')">{{ k }}</button>
+        {% endfor %}
+    </div>
+
+    <div id="options">
+        {% for l in lines %}
+        <button onclick="setLines({{ l }})">{{ l }}</button>
+        {% endfor %}
+    </div>
+
+    </div>
+
+    <p id="serviceTitle">mav_router</p>
+    <div id="logBox"></div>
+    
+</div>

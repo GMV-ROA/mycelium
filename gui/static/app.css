@@ -1,0 +1,42 @@
+* { font-family: 'Arial' }
+body { padding: 10px; }
+.center { text-align: center; }
+
+#nav { display: flex; margin-bottom: 5px; background-color: #b34453; }
+#nav .tab { 
+    width: 120px; 
+    text-align: center; 
+    padding: 12px; 
+    background-color: #b34453;
+}
+#nav a { color: #f7f7f7; text-decoration: none; }
+#nav .tab.active { background-color: #8b2c39; }
+
+table { width: 100%; }
+table thead { background-color: #e7e7e7; }
+table td { padding: 15px; }
+table .btn { border: 1px solid #646464; padding: 10px; }
+table .btn:hover { cursor: pointer; }
+table .dropdown { background-color: #292929; display: none; }
+table .dropdownToggle { background-color: #646464; }
+table .dropdownToggleBtn { padding: 7px 10px; font-size: 14px; cursor: pointer; }
+table .dropdown td,
+table .dropdownToggle td { color: #f7f7f7; }
+table .output { font-size: 14px; }
+table button { margin-right: 5px; }
+table button:hover { cursor: pointer; }
+
+#cameraTab .toggleBox { margin: 10px auto 40px; }
+#cameraTab #displayStatus { vertical-align: middle; margin-left: 20px; }
+#cameraTab .imgBox img { width: 700px; }
+
+#redisTab #tabs button { margin-right: 5px; }
+#redisTab #tabs button:hover { cursor: pointer; }
+#redisTab #tabs { margin-bottom: 40px; }
+#redisTab table { table-layout:fixed; }
+#redisTab table td { font-size: 14px; overflow: hidden; text-overflow: ellipsis; word-wrap: break-word; }
+
+#logsTab button { margin-right: 5px; }
+#logsTab button:hover { cursor: pointer; }
+#logsTab #options { margin: 20px auto 40px; }
+#logBox { padding: 10px; font-size: 13px; background-color: #292929; overflow-y: scroll; height: 100vh; color: #f7f7f7 }

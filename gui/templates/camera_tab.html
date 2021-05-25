@@ -1,0 +1,27 @@
+<div id="cameraTab">
+    
+    <div class="settings">
+        {% for mode, option in stream_options.items() %}
+        <p>{{ option }} <button onclick="setCameraMode({{ mode }})">Enable</button></p>
+        {% endfor %}
+        <br>
+        {% for option in save_frame_options.keys() %}
+        <p>Save frame: {{ option }} <button onclick="toggleFrameSave('{{ option }}')">Toggle on/off</button></p>
+        {% endfor %}
+    </div>
+    <br>
+    <div class="toggleBox">
+        {% if devices %}
+        <p>Devices found: {{ ", ".join(devices) }}</p>
+        {% endif %}
+        <button onclick="displayToggle()">Toggle camera display</button>
+        <span id="displayStatus">OFF</span>
+    </div>
+    <br>
+    <div class="imgBox">
+        <p>RGB frame</p>
+        <img id="rgb_img" src="">
+    </div>
+    <!-- <img id="depth_img" src=""> -->
+
+</div>

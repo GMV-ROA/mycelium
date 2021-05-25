@@ -1,0 +1,20 @@
+<div id="redisTab">
+    
+    <div id="tabs">
+        {% for k, v in databases.items() %}
+        <button onclick="switchDatabase({{ v }})">{{ k }}</button>
+        {% endfor %}
+    </div>
+
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <td>Key</td>
+                <td>Value</td>
+            </tr>
+        </thead>
+
+        <tbody id="dataBody"></tbody>
+    </table>
+
+</div>

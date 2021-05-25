@@ -1,0 +1,23 @@
+# Lookup dictionary for data types
+# sensor type:
+#   
+#   parameters:
+#     - parameter: data type
+
+
+databases:
+  robot: 0
+  instruments: 1
+
+robot:
+  - ATTITUDE
+  - SYS_STATUS
+  - HEARTBEAT
+  - GPS_RAW_INT
+  - GPS2_RAW
+
+instruments:
+  t265:
+    vision_position_estimate: send_vision_position_estimate
+  d435:
+    obstacle_distance: send_obstacle_distance

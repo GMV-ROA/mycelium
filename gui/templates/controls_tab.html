@@ -1,0 +1,59 @@
+<div id="controlsTab">
+    <table id="controlsStatus">
+        <thead>
+            <tr>
+                <td>Switch</td>
+                <td class="center">Status</td>
+                <td></td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>EKF source</td>
+                <td></td>
+                <td>
+                    <a href="/controls/set/{{ controls.ekf_source }}/1"><button>GPS only</button></a>
+                    <a href="/controls/set/{{ controls.ekf_source }}/2"><button>VO only</button></a>
+                    <a href="/controls/set/{{ controls.ekf_source }}/3"><button>Fuse sources</button></a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>LED relay</td>
+                <td></td>
+                <td>
+                    <a href="/controls/set/{{ controls.led_relay }}/1"><button>On</button></a>
+                    <a href="/controls/set/{{ controls.led_relay }}/0"><button>Off</button></a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>RGB save frame</td>
+                <td class="center statusCell">{{ 'on' if rgb_status == 1 else 'off' }}</td>
+                <td>
+                    <a href="/controls/set/{{ controls.rgb_capture }}/1"><button>On</button></a>
+                    <a href="/controls/set/{{ controls.rgb_capture }}/0"><button>Off</button></a>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>Depth save frame</td>
+                <td class="center statusCell">{{ 'on' if depth_status == 1 else 'off' }}</td>
+                <td>
+                    <a href="/controls/set/{{ controls.depth_capture }}/1"><button>On</button></a>
+                    <a href="/controls/set/{{ controls.depth_capture }}/0"><button>Off</button></a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Infrared save frame</td>
+                <td class="center statusCell">{{ 'on' if infrared_status == 1 else 'off' }}</td>
+                <td>
+                    <a href="/controls/set/{{ controls.infrared_capture }}/1"><button>On</button></a>
+                    <a href="/controls/set/{{ controls.infrared_capture }}/0"><button>Off</button></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

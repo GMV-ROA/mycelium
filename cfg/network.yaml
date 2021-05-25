@@ -1,0 +1,10 @@
+# robot_1:
+# robot_2:
+# robot_3:
+
+# picam_1: 192.168.2.127
+# picam_2: 192.168.2.184
+
+# udp mavlink ports to external
+# _picam_1: 14577
+# _picam_2: 14576
