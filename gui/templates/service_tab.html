@@ -1,0 +1,40 @@
+<div id="serviceTab">
+    <table id="serviceStatus">
+        <thead>
+            <tr>
+                <td>Service</td>
+                <td class="center">Status</td>
+                <td></td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>All services</td>
+                <td></td>
+                <td>
+                    <button onclick="startAllServices()">Re/Start</button>
+                    <button onclick="stopAllServices()">Stop</button>
+                </td>
+            </tr>
+
+            {% for k, v in service_statuses.items() %}
+            <tr>
+                <td>{{ k }}</td>
+                <td class="center statusCell">{{ v }}</td>
+                <td>
+                    <button onclick="setServiceState('{{ k }}', 1)">Re/Start</button></a>
+                    <button onclick="setServiceState('{{ k }}', 0)">Stop</button>
+                </td>
+            </tr>
+            <tr class="dropdownToggle">
+                <td class="dropdownToggleBtn" onclick="toggleDropdown(this)" colspan="100">Show/Hide logs</td>
+            </tr>
+            <tr class="dropdown">
+                <td class="output" colspan="100"></td>
+            </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+</div>

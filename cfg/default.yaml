@@ -1,0 +1,75 @@
+# Logging settings
+sysout_level: 10  # Debug
+log_level: 20     # Info
+
+# MAVLINK connections
+ardupilot_device_port: /dev/ttyACM0
+connection_baudrate: 921600 # default for all connections
+mavlink_msg_direct: 127.0.0.1:14575
+t265_connection: 127.0.0.1:14560
+d435_connection: 127.0.0.1:14570
+redis_to_ap: 127.0.0.1:14578
+ap_to_redis: 127.0.0.1:14579
+default_source_component: 1
+camera_source_component: 93
+
+# EKF source
+rc_channel_id: 9
+live_ekf_switch: False
+
+# Relay Pin
+relay_pin:
+  led: 3
+
+# Instruments
+d435:
+  use_preset_file: True
+  preset_file: d4xx-default.json
+  configuration_mode: 1
+  enable_rgb_stream: True
+  enable_depth_stream: True
+  enable_infrared_stream: True
+  save_rgb_frames: False
+  save_depth_frames: False
+  save_infrared_frames: False
+  save_redis_expiry: 5
+  enable_save_obstacle_distance: True
+  enable_save_distance_sensor: False
+  filters:
+    decimation: True
+    threshold: True
+    depth_to_disparity: True
+    spatial: True
+    temporal: True
+    hole_filling: True
+    disparity_to_depth: True  
+  camera_facing_angle_degree: 10
+  obstacle_line_height_ratio: 0.18
+  obstacle_line_thickness_pixel: 10  
+  depth_width: 640  # Defines the number of columns for each frame or zero for auto resolve
+  depth_height: 480 # Defines the number of lines for each frame or zero for auto resolve
+  depth_fps: 30
+  depth_min_m: 0.1
+  depth_max_m: 8.0  
+  color_width: 1920
+  color_height: 1080
+  color_fps: 30 
+  infrared_width: 1280
+  infrared_height: 800
+  infrared_fps: 30
+
+
+t265:
+  save_redis_expiry: 5
+  camera_rot_x: 10
+  camera_rot_y: 0
+  camera_rot_z: 0
+  scale_factor: 1.0
+  compass_enabled: False
+  linear_accel_cov: 0.01
+  angular_vel_cov: 0.01
+  # Pose jump is indicated when position changes abruptly. The behavior is not well documented yet (as of librealsense 2.34.0)
+  jump_threshold: 0.1 # in meters, from trials and errors, should be relative to how frequent is the position data obtained (200Hz for the T265)
+  jump_speed_threshold: 20.0 # in m/s from trials and errors, should be relative to how frequent is the velocity data obtained (200Hz for the T265)
+
+save_data_dir: rs_data

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <link rel="stylesheet" href="app.css">
+    </head>
+
+    <body>
+        <div id="nav">
+            <a href="/service">
+                <div class="tab {{ 'active' if tab == 'service' }}">Service</div>
+            </a>
+            <a href="/controls">
+                <div class="tab {{ 'active' if tab == 'controls' }}">Controls</div>
+            </a>
+            <a href="/camera">
+                <div class="tab {{ 'active' if tab == 'camera' }}">Camera</div>
+            </a>
+            <a href="/redis">
+                <div class="tab {{ 'active' if tab == 'redis' }}">Redis</div>
+            </a>
+            <a href="/logs">
+                <div class="tab {{ 'active' if tab == 'logs' }}">Logs</div>
+            </a>
+        </div>
+        
+        {% include tab_html %}
+
+    </body>
+    
+    <script src="{{ tab }}.js"></script>
+</html>
