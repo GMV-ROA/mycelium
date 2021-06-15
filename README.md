@@ -35,7 +35,7 @@ Tested on GMV's MiniB rover (version 3.5).
 # Installation
 Clone the repository:
 ```
-git clone https://spass-git-ext.gmv.com/BEAST/mycelium.git
+git clone https://github.com/GMV-ROA/mycelium.git
 ```
 The ```setup.sh``` script will add the python mycelium module to path and install services for running scripts with systemd (note: pyrealsense2 must be added to the python path). It will also generate a mavlink router config file for connection endpoints. Before running the script, you should update the config file ```mycelium/cfg/default.yaml``` with the correct ArduPilot device port and connection baudrate.
 ```
