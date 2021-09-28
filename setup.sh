@@ -25,6 +25,8 @@ fi
 
 if [[ -z $MYCELIUM_CFG_ROOT ]]; then
     echo "export MYCELIUM_CFG_ROOT=$MYCELIUM_ROOT/cfg" >> ~/.bashrc
+    # Problem with above line, hotfix below
+    export MYCELIUM_CFG_ROOT=$MYCELIUM_ROOT/cfg
     source ~/.bashrc
 fi
 
