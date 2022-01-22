@@ -8,6 +8,7 @@
 databases:
   robot: 0
   instruments: 1
+  arsh_arm: 2
 
 robot:
   - ATTITUDE
@@ -21,3 +22,12 @@ instruments:
     vision_position_estimate: send_vision_position_estimate
   d435:
     obstacle_distance: send_obstacle_distance
+  # soil_probe:
+
+
+
+arsh_arm:
+  control:
+    - command
+  sm:
+    - state

@@ -2,8 +2,11 @@
 
 from re import S
 import sys
+from redis import Redis
 
 from torch import set_num_threads
+
+from rospy import TransportInitError
 sys.path.append("/usr/local/lib/")
 
 import os
@@ -17,7 +20,7 @@ import smach
 
 
 from mycelium.components import RedisBridge, Base
-from mycelium.components.arsh_xarm5_controller import StowedState, HomeState, DeployProbeState, SampleSoilState
+from mycelium.components.arsh_xarm5_controller import *
 
 class ARSHXarm5Controller(Base):
 
@@ -26,6 +29,8 @@ class ARSHXarm5Controller(Base):
         self.logger.log_info("Initializing ARSHXarm5Controller")
 
         self.exit_threads = False
+
+        self.rb_a = RedisBridge(db=self.rd_cfg.databases['arsh_arm'])
 
         self._setup_parameters()
         self._setup_sm()
@@ -37,15 +42,45 @@ class ARSHXarm5Controller(Base):
 
     def _setup_sm(self):
         self.sm = smach.StateMachine(outcomes=['exit'])
+        self.sm.userdata.sm_terminate = False
+        self.sm.userdata.deploy_trigger = True
+        self.sm.userdata.sample_trigger = False
 
         with self.sm:
-            smach.StateMachine.add("STOWED", StowedState(), transitions={   'deploy':'HOME', 
-                                                                            'exit': 'exit'})
-            smach.StateMachine.add("HOME", HomeState(), transitions={   'stow':'STOWED',
-                                                                        'start_sample_acq':'exit'})
+
+            smach.StateMachine.add("GO_STOW", GoStowState(self.rb_a, "GO_STOW"),    transitions={   'at_stow':'IDLE'},
+                                                                                    remapping={'go_stow_state_terminate':'sm_terminate'})
+
+            smach.StateMachine.add("IDLE", IdleState(self.rb_a, "IDLE"),    transitions={   'goto_home':'GO_HOME',
+                                                                                            'idle_hold':'IDLE',
+                                                                                            'exit': 'exit'},
+                                                                            remapping={ 'idle_state_terminate':'sm_terminate',
+                                                                                        'deploy_trigger':'deploy_trigger'})
+
+            smach.StateMachine.add("GO_HOME", GoHomeState(self.rb_a, "GO_HOME"),    transitions={'at_home':'HOME'},
+                                                                                    remapping={'go_home_state_terminate':'sm_terminate'})
+
+            smach.StateMachine.add("HOME", HomeState(self.rb_a, "HOME"),    transitions={   'goto_stow':'GO_STOW',
+                                                                                            'begin_sample_acq':'DEPLOY_PROBE',
+                                                                                            'home_hold':'HOME',
+                                                                                            'exit':'exit'},
+                                                                            remapping={ 'home_state_terminate':'sm_terminate',
+                                                                                        'sample_trigger':'sample_trigger'})
+            
+            smach.StateMachine.add("DEPLOY_PROBE", DeployProbeState(self.rb_a, "DEPLOY_PROBE"), transitions={   'deploy_success':'SAMPLE_SOIL',
+                                                                                                                'deploy_abort':'GO_HOME'},
+                                                                                                remapping={'deploy_probe_state_terminate':'sm_terminate'})
+
+            smach.StateMachine.add("SAMPLE_SOIL", SampleSoilState(self.rb_a, "SAMPLE_SOIL"),    transitions={'sample_acq_end':'GO_HOME'},
+                                                                                                remapping={'sample_soil_state_terminate':'sm_terminate'})
 
         # Attach SMACH tree in thread so that we can kill (ctrl-c) the controller
         self.sm_thread = Thread(target=self.sm.execute)
+
+
+    # def _setup_ranging(self):
+    #     # TODO: add ranging sensor
+
 
 
     def start(self):
@@ -54,14 +89,12 @@ class ARSHXarm5Controller(Base):
 
         while not self.exit_threads:
             time.sleep(0.5)
-            self.logger.log_debug("Still running...")
-
-        self.logger.log_error("TIME TO EXIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
 
     def stop(self):
         self.logger.log_info("Stopping ARSHXarm5Controller")
         self.exit_threads = True
+        self.sm.userdata.sm_terminate = True
         
         try:
             self.sm.request_preempt()
