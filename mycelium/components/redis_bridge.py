@@ -27,7 +27,8 @@ class RedisBridge:
         return self.r.set(key_string, value, expiry)
 
     def get_key(self, *keys, parse_json=True):
-        key_string = ":".join(keys)        
+        key_string = ":".join(keys)   
+        print("getting key string %s" % key_string)     
         return self.get_key_by_string(key_string, parse_json)
         
     def get_key_by_string(self, key_string, parse_json=True):

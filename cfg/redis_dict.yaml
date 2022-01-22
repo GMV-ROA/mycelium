@@ -29,5 +29,4 @@ instruments:
 arsh_arm:
   control:
     - command
-  sm:
-    - state
+  sm: state

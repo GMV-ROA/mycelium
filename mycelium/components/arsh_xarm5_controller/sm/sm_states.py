@@ -15,7 +15,10 @@ class BaseState(smach.State):
 
     def execute(self, userdata):
         print("Executing \"%s\" state" % self.name)
-        self.rb_if.add_key(self.name, 'sm', 'state', expiry=5)
+        self.rb_if.add_key(self.name, 'sm', 'state', expiry=50, to_json=False)
+        recv_key = self.rb_if.get_key('test', parse_json=True)
+
+        print("recvd key: %s" % recv_key)
 
         # Call sub-class state execute logic
         return self.state_execute(userdata)

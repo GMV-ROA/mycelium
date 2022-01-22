@@ -1,14 +1,5 @@
 #!/usr/bin/env python3
 
-from re import S
-import sys
-from redis import Redis
-
-from torch import set_num_threads
-
-from rospy import TransportInitError
-sys.path.append("/usr/local/lib/")
-
 import os
 import time
 from threading import Thread
@@ -17,7 +8,8 @@ import numpy as np
 import math as m
 import traceback
 import smach
-
+# import rospy
+# import smach_ros
 
 from mycelium.components import RedisBridge, Base
 from mycelium.components.arsh_xarm5_controller import *
@@ -41,6 +33,9 @@ class ARSHXarm5Controller(Base):
         self.sample_period = 1.0 
 
     def _setup_sm(self):
+
+        # rospy.init_node('smach_example_state_machine')
+
         self.sm = smach.StateMachine(outcomes=['exit'])
         self.sm.userdata.sm_terminate = False
         self.sm.userdata.deploy_trigger = True
@@ -48,7 +43,7 @@ class ARSHXarm5Controller(Base):
 
         with self.sm:
 
-            smach.StateMachine.add("GO_STOW", GoStowState(self.rb_a, "GO_STOW"),    transitions={   'at_stow':'IDLE'},
+            smach.StateMachine.add("GO_STOW", GoStowState(self.rb_a, "GO_STOW"),    transitions={'at_stow':'IDLE'},
                                                                                     remapping={'go_stow_state_terminate':'sm_terminate'})
 
             smach.StateMachine.add("IDLE", IdleState(self.rb_a, "IDLE"),    transitions={   'goto_home':'GO_HOME',
@@ -82,12 +77,18 @@ class ARSHXarm5Controller(Base):
     #     # TODO: add ranging sensor
 
 
-
     def start(self):
         self.logger.log_info("Starting ARSHXarm5Controller")
         self.sm_thread.start()
 
+        # TODO: try to get viewer working to get screenshot
+        # sis = smach_ros.IntrospectionServer('server_name', self.sm, '/SM_ROOT')
+        # sis.start()
+        # rospy.spin()
+        # sis.stop()
+
         while not self.exit_threads:
+            # print (self.sm.get_active_states())
             time.sleep(0.5)
 
 
