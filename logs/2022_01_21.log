@@ -1,0 +1,85 @@
+[2022-01-21 20:08:23,640] - [run_d435] - [CRITICAL] - Traceback (most recent call last):
+  File "/home/steve/gmv_work/arsh/mycelium/mycelium_utils/scripter.py", line 47, in run
+    self.run_main()
+  File "scripts/run_d435.py", line 18, in run_main
+    self.camera.start()
+  File "/home/steve/gmv_work/arsh/mycelium/mycelium/camera_d435.py", line 536, in start
+    self._realsense_configure_setting(preset_file)
+  File "/home/steve/gmv_work/arsh/mycelium/mycelium/camera_d435.py", line 203, in _realsense_configure_setting
+    device = self._find_device_that_supports_advanced_mode()
+  File "/home/steve/gmv_work/arsh/mycelium/mycelium/camera_d435.py", line 166, in _find_device_that_supports_advanced_mode
+    raise Exception("No device that supports advanced mode was found")
+Exception: No device that supports advanced mode was found
+
+[2022-01-21 20:08:23,640] - [run_d435] - [CRITICAL] - Traceback (most recent call last):
+  File "/home/steve/gmv_work/arsh/mycelium/mycelium_utils/scripter.py", line 47, in run
+    self.run_main()
+  File "scripts/run_d435.py", line 18, in run_main
+    self.camera.start()
+  File "/home/steve/gmv_work/arsh/mycelium/mycelium/camera_d435.py", line 536, in start
+    self._realsense_configure_setting(preset_file)
+  File "/home/steve/gmv_work/arsh/mycelium/mycelium/camera_d435.py", line 203, in _realsense_configure_setting
+    device = self._find_device_that_supports_advanced_mode()
+  File "/home/steve/gmv_work/arsh/mycelium/mycelium/camera_d435.py", line 166, in _find_device_that_supports_advanced_mode
+    raise Exception("No device that supports advanced mode was found")
+Exception: No device that supports advanced mode was found
+
+[2022-01-21 20:08:23,641] - [na] - [ERROR] - Pipe closing
+[2022-01-21 20:08:23,641] - [na] - [ERROR] - Pipe closing
+[2022-01-21 20:08:23,641] - [na] - [WARNING] - Thread failed to join
+[2022-01-21 20:08:23,641] - [na] - [WARNING] - Thread failed to join
+[2022-01-21 20:08:23,641] - [na] - [WARNING] - Thread failed to join
+[2022-01-21 20:08:23,641] - [na] - [WARNING] - Thread failed to join
+[2022-01-21 20:08:23,641] - [na] - [WARNING] - Thread failed to join
+[2022-01-21 20:08:23,641] - [na] - [WARNING] - Thread failed to join
+[2022-01-21 20:08:23,641] - [na] - [WARNING] - Thread failed to join
+[2022-01-21 20:08:23,641] - [na] - [WARNING] - Thread failed to join
+[2022-01-21 20:08:23,641] - [na] - [WARNING] - Thread failed to join
+[2022-01-21 20:08:23,641] - [na] - [WARNING] - Thread failed to join
+[2022-01-21 20:08:23,641] - [na] - [WARNING] - Thread failed to join
+[2022-01-21 20:08:23,641] - [na] - [WARNING] - Thread failed to join
+[2022-01-21 20:27:17,867] - [run_arsh_xarm5_controller] - [CRITICAL] - Traceback (most recent call last):
+  File "/home/steve/gmv_work/arsh/mycelium/mycelium_utils/scripter.py", line 47, in run
+    self.run_main()
+  File "run_arsh_xarm5_controller.py", line 9, in run_main
+    self.arm_controller = ARSHXarm5Controller()
+  File "/home/steve/gmv_work/arsh/mycelium/mycelium/arsh_xarm5_controller.py", line 19, in __init__
+    self.logger.log_info("Initializing ARSHXarm5Controller")
+AttributeError: 'ARSHXarm5Controller' object has no attribute 'logger'
+
+[2022-01-21 21:05:54,573] - [run_arsh_xarm5_controller] - [CRITICAL] - Traceback (most recent call last):
+  File "/home/steve/gmv_work/arsh/mycelium/mycelium_utils/scripter.py", line 47, in run
+    self.run_main()
+  File "run_arsh_xarm5_controller.py", line 9, in run_main
+    self.arm_controller = ARSHXarm5Controller()
+  File "/home/steve/gmv_work/arsh/mycelium/mycelium/arsh_xarm5_controller.py", line 29, in __init__
+    self._setup_sm()
+  File "/home/steve/gmv_work/arsh/mycelium/mycelium/arsh_xarm5_controller.py", line 41, in _setup_sm
+    smach.StateMachine.add("HOME", HomeState(), transitions={'stow':'STOWED'})
+TypeError: __init__() missing 1 required positional argument: 'logger'
+
+[2022-01-21 21:05:54,573] - [run_arsh_xarm5_controller] - [CRITICAL] - Traceback (most recent call last):
+  File "/home/steve/gmv_work/arsh/mycelium/mycelium_utils/scripter.py", line 47, in run
+    self.run_main()
+  File "run_arsh_xarm5_controller.py", line 9, in run_main
+    self.arm_controller = ARSHXarm5Controller()
+  File "/home/steve/gmv_work/arsh/mycelium/mycelium/arsh_xarm5_controller.py", line 29, in __init__
+    self._setup_sm()
+  File "/home/steve/gmv_work/arsh/mycelium/mycelium/arsh_xarm5_controller.py", line 41, in _setup_sm
+    smach.StateMachine.add("HOME", HomeState(), transitions={'stow':'STOWED'})
+TypeError: __init__() missing 1 required positional argument: 'logger'
+
+[2022-01-21 22:08:07,252] - [na] - [ERROR] - TIME TO EXIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+[2022-01-21 22:08:07,252] - [na] - [ERROR] - TIME TO EXIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+[2022-01-21 22:08:41,260] - [na] - [ERROR] - TIME TO EXIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+[2022-01-21 22:08:41,260] - [na] - [ERROR] - TIME TO EXIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+[2022-01-21 22:09:29,569] - [na] - [ERROR] - TIME TO EXIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+[2022-01-21 22:09:29,569] - [na] - [ERROR] - TIME TO EXIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+[2022-01-21 22:10:02,508] - [na] - [ERROR] - TIME TO EXIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+[2022-01-21 22:10:02,508] - [na] - [ERROR] - TIME TO EXIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+[2022-01-21 22:11:19,165] - [na] - [ERROR] - TIME TO EXIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+[2022-01-21 22:11:19,165] - [na] - [ERROR] - TIME TO EXIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+[2022-01-21 22:12:30,269] - [na] - [ERROR] - TIME TO EXIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+[2022-01-21 22:12:30,269] - [na] - [ERROR] - TIME TO EXIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+[2022-01-21 22:16:18,244] - [na] - [ERROR] - TIME TO EXIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+[2022-01-21 22:16:18,244] - [na] - [ERROR] - TIME TO EXIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

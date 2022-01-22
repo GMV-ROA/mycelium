@@ -3,3 +3,4 @@ from .base import Base
 from .ardu_mavlink import Connector
 from .redis_bridge import RedisBridge
 from .camera import Camera
+from .arsh_xarm5_controller import *

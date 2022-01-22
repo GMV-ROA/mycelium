@@ -1,0 +1,16 @@
+[Unit]
+Description=Get parameters from ArduPilot and save to redis
+Requires=redis.service
+Requires=mavlink-router.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=steve
+EnvironmentFile=/etc/mycelium/env_file.conf
+ExecStart=/usr/bin/env python3 /home/steve/gmv_work/arsh/mycelium/redis_scripts/ap_to_redis.py
+
+[Install]
+WantedBy = multi-user.target
