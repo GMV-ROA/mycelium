@@ -102,7 +102,7 @@ class TOFSenseLaserRangeFinder:
 
 
 if __name__ == "__main__":
-    sensor = TOFSenseLaserRange('/dev/ttyUSB0', 115200)
+    sensor = TOFSenseLaserRangeFinder('/dev/ttyUSB0', 115200)
     while True:
         result = sensor.get_distance_data()
         print(result)

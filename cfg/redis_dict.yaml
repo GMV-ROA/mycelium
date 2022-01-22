@@ -22,6 +22,10 @@ instruments:
     vision_position_estimate: send_vision_position_estimate
   d435:
     obstacle_distance: send_obstacle_distance
+  tofsense_range:
+    sensor0: 
+      - state
+      - range_data
   # soil_probe:
 
 

@@ -17,7 +17,7 @@ class RedisBridge:
         
     def add_key(self, value, *keys, expiry=None, to_json=True):
         key_string = ":".join(keys)
-        print("key string: %s" % key_string)
+        # print("key string: %s" % key_string)
         return self.add_key_by_string(value, key_string, expiry, to_json)
 
     def add_key_by_string(self, value, key_string, expiry=None, to_json=True):
@@ -28,7 +28,7 @@ class RedisBridge:
 
     def get_key(self, *keys, parse_json=True):
         key_string = ":".join(keys)   
-        print("getting key string %s" % key_string)     
+        # print("getting key string %s" % key_string)     
         return self.get_key_by_string(key_string, parse_json)
         
     def get_key_by_string(self, key_string, parse_json=True):
