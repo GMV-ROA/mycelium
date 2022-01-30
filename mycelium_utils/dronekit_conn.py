@@ -68,6 +68,12 @@ class DronekitConnector:
             return [gps.lat, gps.lon, gps.fix_type]
         return [None, None, None]
 
+    def get_attitude(self):
+        attitude = self.conn.attitude
+        if attitude:
+            return [attitude.roll, attitude.pitch, attitude.yaw]
+        return [None, None, None]
+
     def disconnect(self):
         self.conn.close()
 

@@ -75,7 +75,8 @@ class NetworkConfig(DefaultConfig):
          cfg = yaml.safe_load(open(self.cfg_file))
       except:
          cfg = {}
-      self.__dict__.update(cfg)
+      if cfg:
+          self.__dict__.update(cfg)
 
       self.udp_ext = self.generate_external_ports()
 
