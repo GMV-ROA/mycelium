@@ -36,3 +36,13 @@ class RedisBridge:
         if parse_json and data is not None:
             data = json.loads(data)
         return data
+
+    def hset(self, id, *keys, data):
+        key_string = ":".join(keys)
+        self.r.hset(id, key_string, data)
+
+    def send_stream(self, id, *keys, data):
+        key_string = ":".join(keys)
+        stream = {id: data}
+        return self.r.xadd(key_string, stream, maxlen=100)
+

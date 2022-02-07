@@ -26,6 +26,12 @@ instruments:
     sensor0: 
       - state
       - range_data
+  oakd:
+    info:
+      - name
+      - state
+    data:
+    - preview
   # soil_probe:
 
 
