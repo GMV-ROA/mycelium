@@ -7,9 +7,9 @@ class RedisBridge:
     DEFAULT_EXPIRY = 60*60*24 # 24 hours
     CONNECTION_ERROR = redis.exceptions.ConnectionError
 
-    def __init__(self, port=6379, db=0):
+    def __init__(self, host='127.0.0.1', port=6379, db=0):
         super().__init__()
-        self.r = redis.Redis(host='localhost', port=port, db=db)
+        self.r = redis.Redis(host=host, port=port, db=db)
         try:
             self.r.ping()
         except redis.exceptions.ConnectionError as e:
@@ -42,8 +42,28 @@ class RedisBridge:
         value = data
         self.r.hset(key_string, value, mapping)
 
+    def hget_all(self, *keys, value):
+        key_string = ":".join(keys)
+
+        list_of_keys = []
+        keys = self.r.keys(key_string)
+        for key in keys:
+            list_of_keys.append(self.r.hget(key, value))
+
+        return list_of_keys
+
     def send_stream(self, id, *keys, data):
         key_string = ":".join(keys)
         stream = {id: data}
         return self.r.xadd(key_string, stream, maxlen=100)
+
+    def read_stream(self, name):
+        data = self.r.xread({name:b"$"}, None, 0) # if data is empty, throw an error?
+        data_stream = data[0][1][0]
+
+        for data in data_stream:
+            if isinstance(data, dict):
+                encoded_data = list(data.values())[0]
+
+                return encoded_data
 
