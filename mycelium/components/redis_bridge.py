@@ -37,9 +37,10 @@ class RedisBridge:
             data = json.loads(data)
         return data
 
-    def hset(self, id, *keys, data):
+    def hset(self, *keys, data, mapping):
         key_string = ":".join(keys)
-        self.r.hset(id, key_string, data)
+        value = data
+        self.r.hset(key_string, value, mapping)
 
     def send_stream(self, id, *keys, data):
         key_string = ":".join(keys)
