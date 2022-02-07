@@ -2,7 +2,7 @@
 
 import os
 
-from mycelium.components import Logger, DefaultConfig, RedisConfig, NetworkConfig
+from mycelium.components import Logger, DefaultConfig, RedisConfig
 
 class Base:
 
