@@ -8,9 +8,9 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=1
-User=steve
+User=robot
 EnvironmentFile=/etc/mycelium/env_file.conf
-ExecStart=/usr/bin/env python3 /home/steve/gmv_work/arsh/mycelium/redis_scripts/ap_to_redis.py
+ExecStart=/usr/bin/env python3 /home/robot/arsh_ws/arsh_arm_controller_pkgs/lib/mycelium/redis_scripts/ap_to_redis.py
 
 [Install]
 WantedBy = multi-user.target

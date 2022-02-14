@@ -45,6 +45,19 @@ class DefaultConfig(dict):
       
       self.__init__()     
 
+   def get_redis_connection(self):
+
+      host = self.network['default_redis_host']
+      port = self.network['default_redis_port']
+
+      if "REDIS_HOST_IP" in os.environ:
+         host = os.environ['REDIS_HOST_IP']
+
+      if "REDIS_HOST_PORT" in os.environ:
+         port = os.environ['REDIS_HOST_PORT']
+
+      return (host,port)
+
 
 class RedisConfig(DefaultConfig):
 

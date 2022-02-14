@@ -23,6 +23,7 @@ class Connector():
         source_component):
         self.connection_string = connection_string
         self.connection_baudrate = connection_baudrate
+        print("Using connection string: ", self.connection_string)
         self.source_system = source_system
         self.source_component = source_component
         self.conn = None

@@ -6,7 +6,9 @@ from mycelium_utils import Scripter
 class ScripterExt(Scripter):
 
     def run_main(self):
-        rb = RedisBridge(db=self.rd_cfg.databases['robot'])
+        redis_host, redis_port = self.cfg.get_redis_connection()
+        self.logger.log_info(f"Using Redis Database at Host:{redis_host}:{redis_port}")
+        rb = RedisBridge(host=redis_host, port=redis_port, db=self.rd_cfg.databases['robot'])
         self.conn = Connector(self.cfg.ap_to_redis, self.cfg.connection_baudrate, 1, 0)
         params = self.rd_cfg.robot
 
