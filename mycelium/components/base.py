@@ -6,9 +6,9 @@ from mycelium.components import Logger, DefaultConfig, RedisConfig
 
 class Base:
 
-    def __init__(self):
-        self.cfg = DefaultConfig()
-        self.rd_cfg = RedisConfig()
+    def __init__(self, **kwargs):
+        self.cfg = DefaultConfig(**kwargs)
+        self.rd_cfg = RedisConfig(**kwargs)
 
         if self.cfg.has_key('log_dir'):
             log_dir = self.cfg.log_dir

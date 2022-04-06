@@ -8,7 +8,7 @@ from os.path import dirname, realpath
 from threading import Thread
 import datetime
 
-import pyrealsense2 as rs
+import pyrealsense2.pyrealsense2 as rs
 from mycelium.components import RedisBridge, Base
 
 class Camera(Base):

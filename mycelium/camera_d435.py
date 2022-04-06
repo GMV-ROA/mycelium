@@ -11,7 +11,7 @@ import numpy as np
 import math as m
 import traceback
 
-import pyrealsense2 as rs
+import pyrealsense2.pyrealsense2 as rs
 import cv2
 import csv
 

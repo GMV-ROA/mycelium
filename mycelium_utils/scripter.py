@@ -10,9 +10,14 @@ from . import Logger, DefaultConfig, RedisConfig, NetworkConfig
 class Scripter:
 
     def __init__(self, 
-        log_dir=None, log_level=Logger.INFO, log_sysout_level=Logger.DEBUG, log_source=None):
+        log_dir=None, 
+        log_level=Logger.INFO, 
+        log_sysout_level=Logger.DEBUG,
+         log_source=None, 
+         **kwargs):
+
         self.logger = Logger(log_dir=log_dir, level=log_level, sysout_level=log_sysout_level, source=log_source)        
-        self.cfg = DefaultConfig()
+        self.cfg = DefaultConfig(**kwargs)
         self.rd_cfg = RedisConfig()
         self.n_cfg = NetworkConfig()
         
@@ -41,10 +46,10 @@ class Scripter:
         self.exit_threads = True
         self.exit_code = 0
 
-    def run(self):
+    def run(self, **kwargs):
         try:
             self.logger.log_info("Running script")
-            self.run_main()
+            self.run_main(**kwargs)
         except:
             self.logger.log_crit(traceback.format_exc())
         finally:

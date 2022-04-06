@@ -3,14 +3,9 @@ import os
 from .utils import *
 
 
-class DefaultConfig(dict):
-
-   def __init__(self, *arg, **kw):
-      super(DefaultConfig, self).__init__(*arg, **kw)
-      dir_path = os.environ['MYCELIUM_CFG_ROOT']
-      self.cfg_file = os.path.join(dir_path, 'default.yaml')
-      cfg = yaml.safe_load(open(self.cfg_file))
-      self.__dict__.update(cfg)
+class ConfigBase(dict):
+   def __init__(self, *arg, **kwargs):
+      super(ConfigBase, self).__init__(*arg, **kwargs)
 
    def has_key(self, key):
       return key in self.__dict__
@@ -43,7 +38,19 @@ class DefaultConfig(dict):
       with open(self.cfg_file, 'w') as fileobject:
          fileobject.writelines(lines)
       
-      self.__init__()     
+      self.__init__()    
+
+# TODO: rename this class to something more meaningful
+class DefaultConfig(ConfigBase):
+
+   def __init__(self, *arg, **kwargs):
+      super(DefaultConfig, self).__init__(*arg, **kwargs)
+      dir_path = os.environ['MYCELIUM_CFG_ROOT']
+      cfg_file = kwargs.get('cfg_file', 'default.yaml')
+      print("Using config file: ", cfg_file)
+      self.cfg_file = os.path.join(dir_path, cfg_file)
+      cfg = yaml.safe_load(open(self.cfg_file))
+      self.__dict__.update(cfg)
 
    def get_redis_connection(self):
 
@@ -59,12 +66,14 @@ class DefaultConfig(dict):
       return (host,port)
 
 
-class RedisConfig(DefaultConfig):
+class RedisConfig(ConfigBase):
 
-   def __init__(self, *arg, **kw):
-      super(RedisConfig, self).__init__(*arg, **kw)
+   def __init__(self, *arg, **kwargs):
+      super(RedisConfig, self).__init__(*arg, **kwargs)
       dir_path = os.environ['MYCELIUM_CFG_ROOT']
-      self.cfg_file = os.path.join(dir_path, 'redis_dict.yaml')
+      dict_file = kwargs.get('dict_file', 'redis_dict.yaml')
+      print("Using dict file: ", dict_file)
+      self.cfg_file = os.path.join(dir_path, dict_file)
       cfg = yaml.safe_load(open(self.cfg_file))
       self.__dict__.update(cfg)
 
@@ -78,19 +87,21 @@ class RedisConfig(DefaultConfig):
 
       return flatten(items)
 
-class NetworkConfig(DefaultConfig):
 
-   def __init__(self, *arg, **kw):
-      super(NetworkConfig, self).__init__(*arg, **kw)
+class NetworkConfig(ConfigBase):
+
+   def __init__(self, *arg, **kwargs):
+      super(NetworkConfig, self).__init__(*arg, **kwargs)
       dir_path = os.environ['MYCELIUM_CFG_ROOT']
-      self.cfg_file = os.path.join(dir_path, 'network.yaml')
+      net_file = kwargs.get('net_file', 'network.yaml')
+      print("Using network file: ", net_file)
+      self.cfg_file = os.path.join(dir_path, net_file)
       try:
          cfg = yaml.safe_load(open(self.cfg_file))
          self.__dict__.update(cfg)
       except:
          cfg = {}
       cfg = {}
-
 
       self.udp_ext = self.generate_external_ports()
 
