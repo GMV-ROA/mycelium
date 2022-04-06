@@ -10,7 +10,7 @@ Restart=always
 RestartSec=1
 User=robot
 EnvironmentFile=/etc/mycelium/env_file.conf
-ExecStart=/usr/bin/env python3 /home/robot/swarm_demo/arsh_arm_controller_pkgs/lib/mycelium/redis_scripts/redis_to_ap.py
+ExecStart=/usr/bin/env python3 /home/robot/swarm_demo/mycelium_agent_controller/lib/mycelium/redis_scripts/redis_to_ap.py
 
 [Install]
 WantedBy = multi-user.target

@@ -9,7 +9,7 @@ Restart=always
 RestartSec=1
 User=robot
 EnvironmentFile=/etc/mycelium/env_file.conf
-ExecStart=/usr/bin/env python3 /home/robot/swarm_demo/arsh_arm_controller_pkgs/lib/mycelium/scripts/run_t265.py
+ExecStart=/usr/bin/env python3 /home/robot/swarm_demo/mycelium_agent_controller/lib/mycelium/scripts/run_t265.py
 
 [Install]
 WantedBy = multi-user.target
