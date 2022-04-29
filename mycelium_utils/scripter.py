@@ -13,8 +13,10 @@ class Scripter:
         log_dir=None, 
         log_level=Logger.INFO, 
         log_sysout_level=Logger.DEBUG,
-         log_source=None, 
-         **kwargs):
+        log_source=None, 
+        **kwargs):
+
+        print("CALLING HERE")
 
         self.logger = Logger(log_dir=log_dir, level=log_level, sysout_level=log_sysout_level, source=log_source)        
         self.cfg = DefaultConfig(**kwargs)

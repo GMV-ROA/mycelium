@@ -18,9 +18,9 @@ class Connector():
 
     def __init__(self,
         connection_string, 
-        connection_baudrate,
-        source_system, 
-        source_component):
+        connection_baudrate=921600,
+        source_system=1, 
+        source_component=93):
         self.connection_string = connection_string
         self.connection_baudrate = connection_baudrate
         self.source_system = source_system
@@ -142,7 +142,7 @@ class Connector():
             angle_offset,       # angle_offset, float,          deg
             mav_frame           # MAV_FRAME, vehicle-front aligned: https://mavlink.io/en/messages/common.html#MAV_FRAME_BODY_FRD    
         )
-        
+
     # # https://mavlink.io/en/messages/common.html#DISTANCE_SENSOR
     # def send_single_distance_sensor_msg(distance, orientation):
     #     # Average out a portion of the centermost part
