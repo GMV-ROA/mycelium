@@ -66,4 +66,7 @@ class RedisBridge:
                 encoded_data = list(data.values())[0]
 
                 return encoded_data
-
+    # Retreive all key and values for debugging
+    def get_redis_keys(self):
+        data = self.r.keys()
+        return data

@@ -65,6 +65,19 @@ class DefaultConfig(ConfigBase):
 
       return (host,port)
 
+   def get_master_redis_connection(self):
+
+      host = self.swarms['master_redis_host']
+      port = self.swarms['master_redis_port']
+
+      if "REDIS_MASTER_IP" in os.environ:
+         host = os.environ['REDIS_MASTER_IP']
+
+      if "REDIS_MASTER_PORT" in os.environ:
+         port = os.environ['REDIS_MASTER_PORT']
+
+      return (host,port)
+
 
 class RedisConfig(ConfigBase):
 
